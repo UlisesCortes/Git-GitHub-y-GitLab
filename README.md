@@ -243,6 +243,7 @@ Longitud de objetos (Object Length).
 ![image](https://user-images.githubusercontent.com/86896526/128273230-143a1af5-10d0-475b-940a-2eaa198ded40.png)
 
 ### Trees
+Arboles y Ramas
 Se relaciones con los hash-object y almacenan el nombre del fichero.
 Para poder ver todos los objetos que hay en el directorio de objects se utiliza este comando : 
  ``` find .git/objects/ -type f```
@@ -262,5 +263,213 @@ Se creo el archivo en formato tree
 
 Para poder visualizar el contenido (-p), el tipo (-t) y el tamaño (-s).
 ![image](https://user-images.githubusercontent.com/86896526/128275831-fd440290-64d2-4a71-9d89-e05fd401d444.png)
+
+El arbol es un tipo de objeto y lo uqe hace es el codigo hashcon informacion de fichero diferente
+para poder diferencia el tipo de archivo es usar el codigo que le easignemos:
+
+![image](https://user-images.githubusercontent.com/86896526/128420047-3c41bc07-162c-423f-8225-a84563217e2b.png)
+
+- trees y blobs
+en esta sección vamos a pasar dos archivo sde git repository al working directory pero pasando primero por staging Area.
+
+* Para podder pasar archivos del git repository a Stain Area usamos el comando 
+ ```git read-tree [5 inicales  del Tree en hexadecimal]```
+y luego los buscamos en la carpeta:
+```git ls-files```
+
+![image](https://user-images.githubusercontent.com/86896526/128421162-0eb315a4-b0f6-4f1f-8e82-dd7562016916.png)
+
+Para pasar archivos desde el staning Area al Working Directory usamos lo siguiente:
+```git checkout-index -a```
+Y lo podemos visualizar que ya se ha psado con el siguiente comandos:
+```ls -la```
+
+![image](https://user-images.githubusercontent.com/86896526/128421988-892bcb1a-b81b-4e56-b061-21be4e0c3f3c.png)
+
+![image](https://user-images.githubusercontent.com/86896526/128422033-94c1155e-7d01-4797-8140-a878918d0100.png)
+
+Para oder visualizar el contenido de los ficheros podemos usar el comando
+```cat [nombre de tu archivo txt]```
+
+
+* Comando nuevo
+```git status```
+- primero no dice en que rama estamos
+- si es que hay commits
+- Menciona que si queremos eliminar los archivos del Staing Area para solo dejarlos en el Working Directory (desenlazarlos).
+- (Untracking) Que no han(ficheros) pasado a la Staing Area y no podran pasar al Git Repository.
+
+![image](https://user-images.githubusercontent.com/86896526/128422936-93eaf436-a0f7-422f-a806-5ae84d6f4b28.png)
+
+
+Hacemos la prueba con el documento file2.txt y observamos que y no esta en el Staning area pero si en el Workind Directory.
+
+![image](https://user-images.githubusercontent.com/86896526/128429741-bef173eb-a415-4fd1-8879-ca9160de21d3.png)
+![image](https://user-images.githubusercontent.com/86896526/128429862-e6834823-5248-4f32-a94b-b6181bde8684.png)
+
+Si lo queremos añadir de nuevo usamos el sigueiente comando:
+```git ad file2.txt```
+ y de nuevo usamos ```git status``` para observar que se volvio a subir a Staging Area:
+ 
+![image](https://user-images.githubusercontent.com/86896526/128430039-ba997d8e-7e76-4cc3-9266-2b6da7bbdc05.png)
+
+
+### Usuario en Git
+Recomendación , hacer ususario con una cuenta que ya tengas en github
+Puede ser enlazado con git hub, pero aún  asi es necesario configurarlo localmente
+uso de comando:
+Creamo un usuario con nombre y otro con un correo al final visualizamos 
+un usuario global
+ ```git config --global user.name "UlisesCortes" ``` 
+ ```git config --global user.email "ulisesdeoz@gmail.com" ``` 
+ ```git config --list ``` 
+
+![image](https://user-images.githubusercontent.com/86896526/128431449-50d2e20d-1a87-4a43-b5a1-573fe62b0f1d.png)
+
+
+
+### Commit
+Pasaremos la infomacion que hay en Staging Area a GitRepository, esto no creará un nuevo tipon de objeto (commit9 que va atener un arbol enlacado directamente con sus blobs.
+Dentro de este commit vamos a tener:
+- Autor
+- fecha
+- comentario
+- Tree
+
+![image](https://user-images.githubusercontent.com/86896526/128431862-0d1bea78-e2a4-4576-97e5-da38c1f7ce2b.png)
+
+Codigo de commit en Git Repository:
+                   *comentario*
+ ```git commit -m "mi primer commit" ```
+
+![image](https://user-images.githubusercontent.com/86896526/128432226-b84a4419-93d3-433e-8931-c2c382cc8b70.png)
+
+Para poder visualisar el tamaño el tipo y el contenido usamoe el comando:
+Introducimos el codigo que nos dio el commit anterior
+ ```git cat-file -t [codigo del commit] ```
+ Aquí nos dirá la información del commmit
+ 
+![image](https://user-images.githubusercontent.com/86896526/128432572-dce7399e-92e7-4b9b-ba9b-35c29d78f353.png)
+
+Para comrpobar que hay un arbol dentro del comit utilizamos el codigo que viene del tree
+![image](https://user-images.githubusercontent.com/86896526/128432804-a451c128-917f-4b41-ad70-b2f913e15d6e.png)
+
+
+### Git Log
+Es una delas herrameintas mas importantes, porque es un comando que nos permite ver todos lo commit que se han utilizado sobre la rama que estemos ejecutando.
+
+![image](https://user-images.githubusercontent.com/86896526/128433733-933aedd2-0d85-41a4-bfab-a352e52fc258.png)
+
+### Cilcos de vida del Commit
+
+![image](https://user-images.githubusercontent.com/86896526/128434027-1fbcbb76-3808-4eb7-9df2-00b7fff269d7.png)
+
+- Untracket: fichero que se encuentra en un  repositorio pero no se a subido (sincronizado con los otros).
+
+### Enlaces entre Commit
+Primero añadimos el file.txt a la rama de git Repocitory ```git add file.txt``` y lo visualizamos
+con el comando ```git ls-file -s```
+
+![image](https://user-images.githubusercontent.com/86896526/128434311-24f5324b-919e-48bb-b8c6-941433e631cd.png)
+
+Añadimos un nuevo fichero llamado fer.txt
+```echo "hola fer" > fer.txt```
+```ls -la```
+
+![image](https://user-images.githubusercontent.com/86896526/128434378-2af4ee62-716b-4ef7-9982-7a38d0569a46.png)
+
+Tambien lo añadimos al Staging Area 
+```git add fer.txt```
+
+![image](https://user-images.githubusercontent.com/86896526/128435079-e54cb229-52c1-4212-8879-e9964f48bce3.png)
+![image](https://user-images.githubusercontent.com/86896526/128435128-2d9bc474-912f-4eeb-99e5-6dcc8a528ce0.png)
+![image](https://user-images.githubusercontent.com/86896526/128435141-7d3ee51a-f938-4d38-badd-597c8e310dc3.png)
+
+Hacemos un segundo commit con los archivos anteriores
+```git commit -m "nuestro segundo commit"```
+![image](https://user-images.githubusercontent.com/86896526/128435230-1fbe5963-8c3d-4b32-9a87-41a6482595f0.png)
+
+Para comprobar lo commmits usamos los el comando 
+```git log``` y observamos que tenemos 2 cambios.
+
+![image](https://user-images.githubusercontent.com/86896526/128435371-dfd6d129-1190-4bd6-b884-45c68e560998.png)
+checamos el contenido delos commits
+![image](https://user-images.githubusercontent.com/86896526/128436012-1a7f79ba-3b55-4293-95d0-efa4c5440467.png)
+
+![image](https://user-images.githubusercontent.com/86896526/128436130-e1105343-70d6-4033-94b2-4ef86a61bf1f.png)
+
+
+## Git Hub Desktop
+añadimos el repocitorio de forma local
+con add y local path
+
+hicimos un tercer commit en changes
+![image](https://user-images.githubusercontent.com/86896526/128436930-77633516-a7ca-459c-b2e1-d5d5aab817b8.png)
+
+### Como volver a un commit desde comando bash
+esta opción no es muy recomndable.
+```git checkout 4fd2a881```
+si yo quisiera hacer un cambio en un commit al final se eliminarian
+ejemplo, cvamos a la segunda rama y agregamos nuevos ficheros y modificamos el archivo fer, pero al momento de pasar a la rama master no se guardaron ninguno de los cambios.
+
+![image](https://user-images.githubusercontent.com/86896526/128437561-beb07755-0e7f-4f09-a3c8-9a304fcea29b.png)
+![image](https://user-images.githubusercontent.com/86896526/128437594-84888d6b-2d99-4df7-9c73-710e4c1adee3.png)
+![image](https://user-images.githubusercontent.com/86896526/128437611-a68f092e-83f5-40d7-a454-2e78eec47682.png)
+
+Como vemos al final no se hizo ningun cambio.
+![image](https://user-images.githubusercontent.com/86896526/128437645-7affaf4a-2b15-423c-a9f6-6f63aac35e19.png)
+
+### HEAD
+c1: commit 1
+t1: tree 1
+b1: blob 1
+
+Se dió un a explicación acerca de lo que se hizo con la rama 2 y su eliminación, ademas se dio una breve aclaración de que podemos trabajar en ramas (C3) en paralelo para luego juntarlas. (c3 y c4 con c5)
+![image](https://user-images.githubusercontent.com/86896526/128438160-905f24da-412c-4de5-a900-02190ad67ef3.png)
+
+veremos hacia adonde apuntan la referencia, en este caso a master 
+![image](https://user-images.githubusercontent.com/86896526/128438467-fe5f9794-08b4-4c64-9eb1-6a50f7ac1336.png)
+
+
+### Creacion de ramas
+Para poder visualizar las rams usamos el comando ```git branch``` y par hacerlas ```git branch [nombre de la rama]```
+
+![image](https://user-images.githubusercontent.com/86896526/128438703-9d2b4f64-e4e0-4f9f-8f80-7119019bc5b3.png)
+
+Para movernos entre las ramsa usamos el comando 
+```git checkout br1```
+![image](https://user-images.githubusercontent.com/86896526/128438789-df01f3f5-3097-41e1-9c4e-886cb4d216ef.png)
+
+*nota* no podemos eliminar una rama en donde estemos.
+Para poder eliminarla nos pasmaos a la rama master y luego dmos con el comando 
+```git branch -d br1```
+![image](https://user-images.githubusercontent.com/86896526/128439144-59098e96-b368-4382-9b08-e89afd644fb7.png)
+
+Este comando te crea y switchea a una nueva rama.
+```git branch -d br1```
+
+si queremos modificar el nombre de la rma usamos el siguiente comando
+primero el nombre de la rama y luego el nuevo nombre
+```git branch -m br1 branch1```
+![image](https://user-images.githubusercontent.com/86896526/128439890-62c3206b-8010-4942-99ec-d575cabf1882.png)
+
+Ahora vamos a ver como unimos dos ramas como el diagrama anterior.
+1. estamos en la Rama branch1
+2. modificamos el fichero fer con ```echo "Hasta luego" >> fer.txt```
+3. Añadimos al GitDirectory con ```git add .```
+4. cehcamos como esta con ```git status```
+5. Creamos un Commit dentro de la rams con ```git commit -m "Commit dentro de la rama"```
+6. checamos que el commit se haya ejecutado correctamente. ```git log```
+7. Nos cambianmos a la rama master  ```git checkout master"```
+8. Revisamos de nuevo que esten los cambios  ```git log```vemos que los commits solo estaban en la rama anterior
+9. y que el archivo fer.txt no se modificó
+10. Para poder conectar ambas ramas se usa el siguiente codigo : ```git merge branch 1```
+11. Revisamos el archivo fer.txt y vemos que el archivo si se combinó con el de la otra rama.
+12. aparte los commit también.
+
+![image](https://user-images.githubusercontent.com/86896526/128441373-5ece7e23-f0f0-4d91-ac37-e7154942dae6.png)
+
+ 
+
 
 
