@@ -470,6 +470,75 @@ Ahora vamos a ver como unimos dos ramas como el diagrama anterior.
 ![image](https://user-images.githubusercontent.com/86896526/128441373-5ece7e23-f0f0-4d91-ac37-e7154942dae6.png)
 
  
+## Ahora veremos el funcionamiento pero desde una nueva aplicación llamada SourceTree
+esta herrmienta nos ayuda a ver de mejor forma los cambios y las uniones de ramas(merge)
+
+![image](https://user-images.githubusercontent.com/86896526/128559533-c03120f7-2fb9-4e5d-ad46-1306e6a48faa.png)
 
 
+## Visual Studio Code
+en este editor de texto también podemos ver como se visualizan los cambios y nuevas ramas.
 
+![image](https://user-images.githubusercontent.com/86896526/128562606-bdc76e72-ea2d-4d0e-9bdd-2c06ae730bbc.png)
+
+## Ignorar Ficheros - gitignore
+
+tiene que estar situado en la raíz del proyecto
+Hacemso un archivo .gitignore
+![image](https://user-images.githubusercontent.com/86896526/128569032-f1efe35b-53b9-4c54-8391-49519b5fdea4.png)
+
+
+## tag o Etiquetas
+ Usualemete se usa con metodologías agiles
+ Ingformación semantico de etiquetas: https://semver.org/lang/es/
+ 
+ ![image](https://user-images.githubusercontent.com/86896526/128569929-1aa40568-ebea-4fb3-8655-c1f853d1ecbe.png)
+
+## Cuarto tipo de objeto estilos de etiquetas
+- ligthweight: solo se quedan guardas como referencias en .git/refs/tags pasa uso local (git tag v1.0.0).
+- annotated(cuarto tipo de objeto): .git/refs/tags se guardan también ahi, como objeros en un repocitorio git .git/objects , un mensaje de tag, autor y fecha. ( git tacg -a v1.0.0 -m "Nueva tag" )
+
+ ### Como usarla
+ usamos el comando: ```git tag [nombre de la etiqueta]``` y verificamos que este correcto con  ```git tag```.
+ ![image](https://user-images.githubusercontent.com/86896526/128570627-db9eec0b-2b61-4e97-ba5d-537fa58f3032.png)
+
+Podremos ver el contenido con el comando ``git show v1.0.0``
+- quien lo hizo
+- donde esta el head, donde el master
+- quien lo ha hecho
+- fecha
+- 
+![image](https://user-images.githubusercontent.com/86896526/128570773-26f0c561-ebfc-4cc4-a442-c6bec756cc22.png)
+
+ ejercicio, crearemos un nuevo commit y como se genera esa etiqueta.
+ 1. Creamos un commit
+ ![image](https://user-images.githubusercontent.com/86896526/128571095-b08e0046-53ad-447d-9f1c-ac941b1c202a.png)
+
+ 2. lo checamos con un ```git log`` 
+ 3. vamos a ver las referencias en las carpetas antes mencionadas ``ls .git/ref/tags/``
+ ![image](https://user-images.githubusercontent.com/86896526/128571346-6d211ae9-9ed3-4e01-9386-35d4c99911d0.png)
+ ![image](https://user-images.githubusercontent.com/86896526/128571375-2ca735af-9949-4bdc-84f9-af3b9410d86f.png)
+
+4. Comprobamos que si funciona por que al quere correr el comando ``git tag`` nos aparece un mensaje que dice que la etiqueta ya existe.
+5. Comprobasmos que era una eiqueta tipo lightweight
+6. ![image](https://user-images.githubusercontent.com/86896526/128571583-c693c52b-3c94-4dd1-b8d3-f0a8bc72f598.png)
+
+Ahora crearemos las de tipo Annotated
+1. con el comando ``git tag -a v2.0.0 -m "Nueva guardada como objeto"``
+2. comprobamos que esta creada
+3. accedemos a la etiqueta para ver que hay dentro
+![image](https://user-images.githubusercontent.com/86896526/128571873-81efdc10-46e9-4848-bb0b-4a49c9beb59d.png)
+4. Guardamos la etiqueta como objeto
+![image](https://user-images.githubusercontent.com/86896526/128572326-131c77cb-53df-451d-9b87-ce29d162d29d.png)
+
+![image](https://user-images.githubusercontent.com/86896526/128572354-cb42d75b-a795-46cc-86de-bf8d9b1ac799.png)
+
+![image](https://user-images.githubusercontent.com/86896526/128572380-8c94cd13-c4b5-4098-8b57-e33ad8f4bbf7.png)
+
+y podemos ver que es tipo tag
+
+6. Para comprobar lo anterior 
+usamos el comando ``git log``.
+
+
+ 
